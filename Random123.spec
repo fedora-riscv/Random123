@@ -1,6 +1,6 @@
 Name:       Random123
 Version:    1.08
-Release:    3%{?dist}
+Release:    4%{?dist}
 Summary:    Library of random number generators
 
 License:    BSD
@@ -99,6 +99,9 @@ cp -a include/Random123/*  $RPM_BUILD_ROOT/%{_includedir}/%{name}/
 %doc examples
 
 %changelog
+* Wed Feb 03 2016 Fedora Release Engineering <releng@fedoraproject.org> - 1.08-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
+
 * Tue Aug 04 2015 Ankur Sinha <ankursinha AT fedoraproject DOT org> 1.08-3
 - Update as per reviewer comments in rhbz 1150445
 
