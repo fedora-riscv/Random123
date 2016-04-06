@@ -1,14 +1,18 @@
+%global debug_package %{nil}
+
 Name:       Random123
-Version:    1.08
-Release:    4%{?dist}
+Version:    1.09
+Release:    1%{?dist}
 Summary:    Library of random number generators
 
 License:    BSD
 URL:        http://www.deshawresearch.com/resources_random123.html
 Source0:    http://www.deshawresearch.com/downloads/download_random123.cgi/%{name}-%{version}.tar.gz
+# gccfeatures.h has a check that only permits building on x86 x86_64 and ppc
+# I'd rather not remove the check
+ExcludeArch:    %{arm} mips64r2 mips32r2 s390 s390x
 
 BuildRequires:  doxygen
-BuildArch:      noarch
 
 %description
 Random123 is a library of "counter-based" random number generators (CBRNGs), in
@@ -99,6 +103,10 @@ cp -a include/Random123/*  $RPM_BUILD_ROOT/%{_includedir}/%{name}/
 %doc examples
 
 %changelog
+* Wed Apr 06 2016 Ankur Sinha <ankursinha AT fedoraproject DOT org> 1.09-1
+- Update to new release
+- Remove noarch
+
 * Wed Feb 03 2016 Fedora Release Engineering <releng@fedoraproject.org> - 1.08-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 
