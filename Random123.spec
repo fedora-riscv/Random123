@@ -2,7 +2,7 @@
 
 Name:       Random123
 Version:    1.09
-Release:    2%{?dist}
+Release:    3%{?dist}
 Summary:    Library of random number generators
 
 License:    BSD
@@ -103,6 +103,9 @@ cp -a include/Random123/*  $RPM_BUILD_ROOT/%{_includedir}/%{name}/
 %doc examples
 
 %changelog
+* Wed Jul 26 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1.09-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
+
 * Fri Feb 10 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1.09-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
 
