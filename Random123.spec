@@ -2,12 +2,15 @@
 
 Name:       Random123
 Version:    1.09
-Release:    6%{?dist}
+Release:    7%{?dist}
 Summary:    Library of random number generators
 
 License:    BSD
 URL:        http://www.deshawresearch.com/resources_random123.html
 Source0:    http://www.deshawresearch.com/downloads/download_random123.cgi/%{name}-%{version}.tar.gz
+# works on aarch64
+# https://github.com/neuronsimulator/nrn/pull/115/files
+Patch0:     0001-enable-arrch64.patch
 # gccfeatures.h has a check that only permits building on x86 x86_64 and ppc
 # I'd rather not remove the check
 ExcludeArch:    %{arm} mips64r2 mips32r2 s390 s390x
@@ -78,7 +81,7 @@ Random123 library can be used with CPU (C and C++) and GPU (CUDA and OpenCL)
 applications.
 
 %prep
-%setup -q
+%autosetup -p1 -S patch
 
 
 %build
@@ -103,6 +106,9 @@ cp -a include/Random123/*  $RPM_BUILD_ROOT/%{_includedir}/%{name}/
 %doc examples
 
 %changelog
+* Fri Dec 28 2018 Ankur Sinha <ankursinha AT fedoraproject DOT org> - 1.09-7
+- Add aarch64 patch
+
 * Thu Jul 12 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1.09-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
