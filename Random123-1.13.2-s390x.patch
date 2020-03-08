@@ -1,0 +1,33 @@
+diff -up Random123-1.13.2/include/Random123/features/gccfeatures.h.orig Random123-1.13.2/include/Random123/features/gccfeatures.h
+--- Random123-1.13.2/include/Random123/features/gccfeatures.h.orig	2020-02-24 06:09:37.192339552 -0500
++++ Random123-1.13.2/include/Random123/features/gccfeatures.h	2020-02-24 06:09:56.902339552 -0500
+@@ -34,7 +34,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ 
+ #define R123_GNUC_VERSION (__GNUC__*10000 + __GNUC_MINOR__*100 + __GNUC_PATCHLEVEL__)
+ 
+-#if !defined(__x86_64__) && !defined(__i386__) && !defined(__powerpc__) && !defined(__arm__) && !defined(__aarch64__)
++#if !defined(__x86_64__) && !defined(__i386__) && !defined(__powerpc__) && !defined(__arm__) && !defined(__aarch64__) && !defined(__s390x__)
+ #  error "This code has only been tested on x86, powerpc and a few arm platforms."
+ #include <including_a_nonexistent_file_will_stop_some_compilers_from_continuing_with_a_hopeless_task>
+ { /* maybe an unbalanced brace will terminate the compilation */
+diff -up Random123-1.13.2/tests/util_cpu.h.orig Random123-1.13.2/tests/util_cpu.h
+--- Random123-1.13.2/tests/util_cpu.h.orig	2020-02-24 06:45:47.762339552 -0500
++++ Random123-1.13.2/tests/util_cpu.h	2020-02-24 07:00:13.302339552 -0500
+@@ -128,9 +128,14 @@ static double clockspeedHz(int *ncores,
+ 	    dprintf(("cleaned modelname is %s\n", *modelnamep));
+ 	}
+ 	if ((s = strstr(buf, "cpu MHz")) || (s = strstr(buf, "clock"))) {
+-	    if (s[1] == 'p') // cpu MHz
+-		CHECKNOTZERO(sscanf(s, "cpu MHz : %lf %n", &xMhz, &i));
+-	    else // clock
++	    if (s[1] == 'p') { // cpu MHz
++		if (s[8] == ':')
++		    CHECKNOTZERO(sscanf(s, "cpu MHz : %lf %n", &xMhz, &i));
++		else if (s[8] == 's')
++		    CHECKNOTZERO(sscanf(s, "cpu MHz static  : %lf %n", &xMhz, &i));
++		else if (s[8] == 'd')
++		    continue; // cpu MHz dynamic
++	    } else // clock
+ 		CHECKNOTZERO(sscanf(s, "clock : %lfMHz %n", &xMhz, &i));
+ 	    dprintf(("parsed %f %d\n", xMhz, i));
+ 	    if (xMhz > Mhz) Mhz = xMhz;

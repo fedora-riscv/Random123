@@ -2,17 +2,18 @@
 
 Name:       Random123
 Version:    1.13.2
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    Library of random number generators
 
 License:    BSD
 URL:        http://www.deshawresearch.com/resources_random123.html
 Source0:    http://www.deshawresearch.com/downloads/download_random123.cgi/%{name}-%{version}.tar.gz
 Patch0:     0001-add-missing-headers.patch
+Patch1:     Random123-1.13.2-s390x.patch
 
 # gccfeatures.h mentions what arches are supported
 # these aren't on the list
-ExcludeArch:    mips64r2 mips32r2 s390 s390x
+ExcludeArch:    mips64r2 mips32r2 s390
 
 BuildRequires:  doxygen
 # For tests
@@ -79,6 +80,10 @@ popd
 %doc examples
 
 %changelog
+* Sun Mar 08 2020 Ankur Sinha <ankursinha AT fedoraproject DOT org> - 1.13.2-2
+- Include patch to support s390x (sent and accepted upstream)
+- Enable s390x build
+
 * Sun Feb 23 2020 Ankur Sinha <ankursinha AT fedoraproject DOT org> - 1.13.2-1
 - Update to latest release
 - Run new tests
