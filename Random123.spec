@@ -2,7 +2,7 @@
 
 Name:       Random123
 Version:    1.13.2
-Release:    2%{?dist}
+Release:    3%{?dist}
 Summary:    Library of random number generators
 
 License:    BSD
@@ -80,6 +80,9 @@ popd
 %doc examples
 
 %changelog
+* Mon Jul 27 2020 Fedora Release Engineering <releng@fedoraproject.org> - 1.13.2-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
+
 * Sun Mar 08 2020 Ankur Sinha <ankursinha AT fedoraproject DOT org> - 1.13.2-2
 - Include patch to support s390x (sent and accepted upstream)
 - Enable s390x build
