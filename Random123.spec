@@ -15,6 +15,7 @@ Patch1:     Random123-1.13.2-s390x.patch
 # these aren't on the list
 ExcludeArch:    mips64r2 mips32r2 s390
 
+BuildRequires: make
 BuildRequires:  doxygen
 # For tests
 BuildRequires:  gcc gcc-c++
