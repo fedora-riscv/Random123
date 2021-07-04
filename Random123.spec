@@ -1,21 +1,20 @@
 %global debug_package %{nil}
 
 Name:       Random123
-Version:    1.13.2
-Release:    5%{?dist}
+Version:    1.14.0
+Release:    1%{?dist}
 Summary:    Library of random number generators
 
 License:    BSD
-URL:        http://www.deshawresearch.com/resources_random123.html
-Source0:    http://www.deshawresearch.com/downloads/download_random123.cgi/%{name}-%{version}.tar.gz
+URL:        https://github.com/DEShawResearch/random123/
+Source0:    %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 Patch0:     0001-add-missing-headers.patch
-Patch1:     Random123-1.13.2-s390x.patch
 
 # gccfeatures.h mentions what arches are supported
 # these aren't on the list
 ExcludeArch:    mips64r2 mips32r2 s390
 
-BuildRequires: make
+BuildRequires:  make
 BuildRequires:  doxygen
 # For tests
 BuildRequires:  gcc gcc-c++
@@ -47,13 +46,13 @@ Provides:  %{name} = %{version}-%{release}
 Development files for %{name}.
 
 %package doc
-Summary:    Documentation for %{name}.
+Summary:    Documentation for %{name}
 
 %description doc
 Documentation for %{name}.
 
 %prep
-%autosetup -S patch -p1
+%autosetup -n random123-%{version} -S patch -p1
 
 
 %build
@@ -81,6 +80,10 @@ popd
 %doc examples
 
 %changelog
+* Sun Jul 04 2021 Ankur Sinha <ankursinha AT fedoraproject DOT org> - 1.14.0-1
+- Update to latest release
+- Drop no longer needed s390x patch (merged upstream)
+
 * Mon Jan 25 2021 Fedora Release Engineering <releng@fedoraproject.org> - 1.13.2-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
 
