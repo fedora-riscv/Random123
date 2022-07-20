@@ -2,7 +2,7 @@
 
 Name:       Random123
 Version:    1.14.0
-Release:    3%{?dist}
+Release:    4%{?dist}
 Summary:    Library of random number generators
 
 License:    BSD
@@ -80,6 +80,9 @@ popd
 %doc examples
 
 %changelog
+* Wed Jul 20 2022 Fedora Release Engineering <releng@fedoraproject.org> - 1.14.0-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild
+
 * Wed Jan 19 2022 Fedora Release Engineering <releng@fedoraproject.org> - 1.14.0-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild
 
