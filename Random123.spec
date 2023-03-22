@@ -2,13 +2,14 @@
 
 Name:       Random123
 Version:    1.14.0
-Release:    5%{?dist}
+Release:    5.0.riscv64%{?dist}
 Summary:    Library of random number generators
 
 License:    BSD
 URL:        https://github.com/DEShawResearch/random123/
 Source0:    %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 Patch0:     0001-add-missing-headers.patch
+Patch9:     enable-riscv.patch
 
 # gccfeatures.h mentions what arches are supported
 # these aren't on the list
@@ -80,6 +81,9 @@ popd
 %doc examples
 
 %changelog
+* Wed Mar 22 2023 David Abdurachmanov <davidlt@rivosinc.com> - 1.14.0-5.0.riscv64
+- Enable riscv64
+
 * Wed Jan 18 2023 Fedora Release Engineering <releng@fedoraproject.org> - 1.14.0-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_38_Mass_Rebuild
 
